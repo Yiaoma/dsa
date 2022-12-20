@@ -1,12 +1,11 @@
-import { CanonicalElement } from "./week_1/assignments/CanonicalElement";
+import { Percolation } from "./week_1/assignments/Percolation";
 
 const main = () => {
-  const canonicalElement = new CanonicalElement(10);
+  const percolation = new Percolation(3);
 
-  canonicalElement.union(0, 9);
-  canonicalElement.union(2, 6);
+  percolation.open(1, 1);
 
-  console.log(canonicalElement);
+  console.log(percolation);
 };
 
 main();
