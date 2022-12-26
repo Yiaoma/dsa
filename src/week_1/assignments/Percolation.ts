@@ -26,16 +26,67 @@ export class Percolation {
     return row * this.size + col - this.size;
   }
 
-  public open(row: number, col: number): void {}
+  private connectSide(row: number, col: number, side: "T" | "R" | "B" | "L") {
+    let nextRow: number;
+    let nextCol: number;
+
+    if (side === "T") {
+      nextRow = row - 1;
+      nextCol = col;
+
+      if (nextRow === 0) {
+        this.unionFind.union(nextRow, this.getIndex(row, col));
+        return;
+      }
+    } else if (side === "R") {
+      nextRow = row;
+      nextCol = col + 1;
+
+      if (nextCol > this.size) return;
+    } else if (side === "B") {
+      nextRow = row + 1;
+      nextCol = col;
+
+      if (nextRow === this.size + 1) {
+        const bottomIndex = this.size * this.size + 1;
+        this.unionFind.union(bottomIndex, this.getIndex(row, col));
+        return;
+      }
+    } else {
+      nextRow = row;
+      nextCol = col - 1;
+
+      if (nextCol === 0) return;
+    }
+
+    if (!this.isOpen(nextRow, nextCol)) return;
+
+    this.unionFind.union(
+      this.getIndex(row, col),
+      this.getIndex(nextRow, nextCol)
+    );
+  }
+
+  public open(row: number, col: number): void {
+    if (this.isOpen(row, col)) return;
+
+    this.connectSide(row, col, "T");
+    this.connectSide(row, col, "R");
+    this.connectSide(row, col, "B");
+    this.connectSide(row, col, "L");
+
+    this.openSites[this.getIndex(row, col)] = 1;
+    this.openSitesCount++;
+  }
 
   public isOpen(row: number, col: number): boolean {
-    const index = row * this.size + col - this.size;
+    const index = this.getIndex(row, col);
 
     return Boolean(this.openSites[index]);
   }
 
   public isFull(row: number, col: number): boolean {
-    const index = row * this.size + col - this.size;
+    const index = this.getIndex(row, col);
 
     return this.unionFind.connected(0, index);
   }
@@ -45,7 +96,8 @@ export class Percolation {
   }
 
   public percolates(): boolean {
-    const index = this.size * this.size + 2;
-    return this.unionFind.connected(0, index);
+    const bottomIndex = this.size * this.size + 1;
+
+    return this.unionFind.connected(0, bottomIndex);
   }
 }
