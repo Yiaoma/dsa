@@ -47,7 +47,3 @@ export class SocialNetworkConnectivity {
     return this.root(p) === this.root(q);
   }
 }
-
-/**
- * For this problem we can use a Weighted Quick Union data structure with some modification. As we know the least amount of connections needed for all nodes to be connected is equals to N-1, we can store that number in private property of our data structure on assignment. Every time a connection is made we decrease that value by one. We also need to implement a public method to check if all nodes are connected ( if private property is equal to 0). Therefore iterating through log file of connections we create unions and check if our nodes are all connected on each iteration.
- */
