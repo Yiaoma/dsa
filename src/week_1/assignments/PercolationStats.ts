@@ -2,7 +2,7 @@ import { Percolation } from "./Percolation";
 import { randomIntFromInterval } from "../../utils/randomIntFromInterval";
 
 export class PercolationStats {
-  private fractions: number[];
+  public fractions: number[];
   private CONFIDENCE_95 = 1.96;
 
   constructor(n: number, trials: number) {
