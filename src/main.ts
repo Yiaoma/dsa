@@ -1,5 +1,5 @@
 const main = () => {
-  console.log("S novym godom!");
+  console.log("Feliz navidad");
 };
 
 main();
