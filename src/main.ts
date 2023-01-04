@@ -1,5 +1,5 @@
 const main = () => {
-  console.log("Feliz navidad");
+  console.log("Just a commit for a day");
 };
 
 main();
