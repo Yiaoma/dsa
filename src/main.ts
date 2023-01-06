@@ -1,5 +1,5 @@
 const main = () => {
-  console.log("Just a commit for a day");
+  console.log("Just a commit for a another day");
 };
 
 main();
