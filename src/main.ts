@@ -2,7 +2,7 @@ import { randomIntArray } from "./utils/randomIntArray";
 import { threeSum } from "./week_1/assignments/threeSum";
 
 const main = () => {
-  const arr = randomIntArray(5);
+  const arr = randomIntArray(100);
 
   console.log(arr);
 
