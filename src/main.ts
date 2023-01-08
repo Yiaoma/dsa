@@ -1,5 +1,12 @@
+import { randomIntArray } from "./utils/randomIntArray";
+import { threeSum } from "./week_1/assignments/threeSum";
+
 const main = () => {
-  console.log("Just a commit for a another day 2");
+  const arr = randomIntArray(5);
+
+  console.log(arr);
+
+  console.log(threeSum(arr, 0));
 };
 
 main();
